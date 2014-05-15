@@ -1,0 +1,13 @@
+{
+    "title": "Car Schema",
+    "type": "object",
+    "properties": {
+        "model": {
+            "type": "string"
+        },
+        "color": {
+            "type": "string"
+        }
+    },
+    "required": ["color", "model"]
+}
