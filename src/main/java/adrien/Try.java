@@ -1,6 +1,7 @@
 package adrien;
 
-import static adrien.json.Json.*;
+import static radium.json.Json.json;
+import static radium.json.Json.which;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.io.Resources;

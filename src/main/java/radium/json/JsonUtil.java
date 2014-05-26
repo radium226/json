@@ -1,4 +1,4 @@
-package adrien.json;
+package radium.json;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

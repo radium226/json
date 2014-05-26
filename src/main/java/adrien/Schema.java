@@ -1,16 +1,14 @@
 package adrien;
 
-import adrien.json.Json;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import adrien.json.JsonSchemaUtil;
+import radium.json.Json;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.main.JsonSchema;
-import com.google.common.base.Charsets;
 import com.google.common.base.Supplier;
 import com.google.common.io.Resources;
 

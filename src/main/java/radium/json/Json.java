@@ -1,8 +1,10 @@
-package adrien.json;
+package radium.json;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -10,10 +12,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.github.fge.jsonschema.core.exceptions.ProcessingException;
 import com.github.fge.jsonschema.main.JsonSchema;
 import com.google.common.base.Charsets;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.base.Supplier;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.io.Resources;
 import com.nebhale.jsonpath.JsonPath;
-import java.net.URL;
 
 public class Json {
 
@@ -35,6 +40,31 @@ public class Json {
 
     public static class Select {
 
+    	public static class On {
+    		
+    		public JsonNode node;
+    		
+    		public On(JsonNode node) {
+    			super();
+    			
+    			this.node = node;
+    		}
+    		
+    		
+    		public List<JsonNode> asNodeList() {
+    			return asNodeList(Predicates.<JsonNode>alwaysTrue());
+    		}
+    		
+    		public List<JsonNode> asNodeList(Predicate<JsonNode> predicate) {
+    			return Lists.newArrayList(Iterables.filter(node, predicate));
+    		}
+    		
+    		public JsonNode asNode() {
+    			return node;
+    		}
+    		
+    	}
+    	
         private JsonPath path;
 
         protected Select(JsonPath path) {
@@ -43,8 +73,8 @@ public class Json {
             this.path = path;
         }
 
-        public JsonNode on(JsonNode node) {
-            return path.read(node, JsonNode.class);
+        public On on(JsonNode node) {
+            return new On(path.read(node, JsonNode.class));
         }
 
     }
